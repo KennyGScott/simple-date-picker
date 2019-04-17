@@ -1,0 +1,25 @@
+<div class="pogo-picker">
+  <header class="pogo-picker-header">
+    <div (click)="getPrevMonth()" class="pogo-picker-nav-btn pogo-picker-nav-btn-left">
+      <i class="pogo-picker-icon pogo-picker-arrow-left"></i>
+    </div>
+    <div (click)="getNextMonth()" class="pogo-picker-nav-btn pogo-picker-nav-btn-right">
+      <i class="pogo-picker-icon pogo-picker-arrow-right"></i>
+    </div>
+    <div class="pogo-picker-date">{{ getActiveDate() }}</div>
+    <div class="pogo-picker-day-names clear-fix">
+      <div *ngFor="let dayName of dayNames" class="pogo-picker-day-name">
+        {{ dayName }}
+      </div>
+    </div>
+  </header>
+  <div class="pogo-picker-body clear-fix">
+    <div
+      *ngFor="let date of dates"
+      class="pogo-picker-day-box"
+      [ngClass]="{ 'pogo-picker-empty': date.offset === null }"
+    >
+      {{ date.dayOfMonth }}
+    </div>
+  </div>
+</div>
