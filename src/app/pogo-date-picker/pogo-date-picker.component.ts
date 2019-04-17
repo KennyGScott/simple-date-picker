@@ -1,31 +1,32 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import * as moment from 'moment';
 
-export interface IcalDate {
-  dayName: string;
-  dayOfMonth: string;
-  fulldate: string;
-  offset: number;
-}
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'pogo-date-picker',
   templateUrl: './pogo-date-picker.component.html',
   styleUrls: ['./pogo-date-picker.component.scss']
 })
-export class PogoDatePickerComponent implements OnInit {
 
-  public dates: Array<IcalDate>;
+export class PogoDatePickerComponent implements OnInit {
+  @Input() importantDates: Array<any>;
+  public dates: Array<PogoDatePickerModel.CalendarDate>;
   public dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  public monthList: Array<PogoDatePickerModel.MonthListItem>;
   public activeDate;
-  public currentDate;
-  constructor() {
-    this.dates = new Array<IcalDate>();
+  public selectedDate;
+  constructor(private renderer: Renderer2) {
+    this.dates = new Array<PogoDatePickerModel.CalendarDate>();
     this.activeDate = moment(new Date());
+    this.selectedDate = this.activeDate;
   }
 
   ngOnInit() {
     this.generateCalendar();
+    this.generateMonthList();
+  }
+
+  public setDate(date) {
+    this.selectedDate = moment(date, 'YYYY-MM-DD').toString();
   }
 
   public getActiveDate(date = this.activeDate) {
@@ -50,17 +51,31 @@ export class PogoDatePickerComponent implements OnInit {
 
   private setOffset() {
     const offset = this.dates[0].offset;
-    if (offset !== null) {
+    if (offset !== null)
+    {
       for (let i = 0; i < offset; i++)
       {
         this.dates.unshift({
           dayName: '',
           dayOfMonth: '00',
           fulldate: '',
-          offset: null
+          offset: null,
+          isImportant: false
         });
       }
     }
+  }
+
+  private generateMonthList() {
+    const monthList = new Array<PogoDatePickerModel.MonthListItem>();
+    const months = moment.monthsShort();
+    months.forEach((month, idx) => {
+      monthList.push({
+        name: month,
+        index: idx
+      });
+    });
+    this.monthList = monthList;
   }
 
   private generateCalendar(direction = null) {
@@ -69,17 +84,19 @@ export class PogoDatePickerComponent implements OnInit {
     const year = currentDate.year();
     const startOfMonth = moment(currentDate).startOf('month');
     const endOfMonth = moment(currentDate).endOf('month');
-    const dates = new Array<IcalDate>();
+    const dates = new Array<PogoDatePickerModel.CalendarDate>();
     for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++)
     {
       const date = (`${month}/${i}/${year}`).toString();
       const fullDate = moment(date, 'MM/D/YYYY').format('YYYY-MM-DD');
       const day = fullDate.split('-')[2];
+      const important = (this.importantDates !== null) ? this.importantDates.includes(fullDate) : false;
       dates.push({
         dayName: this.dayNames[startOfMonth.day()],
         dayOfMonth: day,
         fulldate: fullDate,
-        offset: moment(fullDate).day()
+        offset: moment(fullDate).day(),
+        isImportant: important
       });
       startOfMonth.add(1, 'days');
     }

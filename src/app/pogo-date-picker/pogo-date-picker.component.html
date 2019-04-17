@@ -16,8 +16,12 @@
   <div class="pogo-picker-body clear-fix">
     <div
       *ngFor="let date of dates"
+      (click)="setDate(date)"
       class="pogo-picker-day-box"
-      [ngClass]="{ 'pogo-picker-empty': date.offset === null }"
+      [ngClass]="{ 'pogo-picker-empty': date.offset === null,
+                   'pogo-picker-highlighted': date.isImportant,
+                   'pogo-picker-selected': date.fullDate === selectedDate
+                  }"
     >
       {{ date.dayOfMonth }}
     </div>

@@ -2,80 +2,85 @@ body {
   font-size: 1rem;
 }
 
-.pogo-picker * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 .pogo-picker {
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
   font-family: "Museo";
-  background-color: white;
-  width: 250px;
-  float: left;
   font-size: 12px;
-  -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  float: left;
+  width: 250px;
+  background-color: white;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .pogo-picker-header {
   position: relative;
-  background: #222;
-  border: 1px solid #222;
   color: #fff;
+  border: 1px solid #222;
+  background: #222;
+}
 
-  .pogo-picker-date {
-    font-weight: bold;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 16px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
+.pogo-picker-date {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0;
+  text-align: center;
+}
 
-  .pogo-picker-day-names {
-    padding: 5px 0 10px;
-  }
+.pogo-picker-day-names {
+  padding: 5px 0 10px;
+}
 
-  .pogo-picker-day-name {
-    width: calc(100% / 7);
-    float: left;
-    text-align: center;
-    color: #eee;
-  }
+.pogo-picker-day-name {
+  float: left;
+  width: calc(100% / 7);
+  text-align: center;
+  color: #eee;
 }
 
 .pogo-picker-body {
   border: 1px solid #ddd;
   border-top: none;
+}
 
-  .pogo-picker-day-box {
-    cursor: pointer;
-    background-color: #f5f5f5;
-    color: #666;
-    width: calc(100% / 7);
-    padding: 6px 0;
-    float: left;
-    text-align: center;
-    font-family: "Source Sans Pro", sans-serif;
-
-    &.pogo-picker-empty {
-      text-indent: -999999px;
-      background-color: #fff;
-      &:hover {
-        cursor: default;
-        background-color: #fff;
-      }
-    }
-
+.pogo-picker-day-box {
+  font-family: "Source Sans Pro", sans-serif;
+  float: left;
+  width: calc(100% / 7);
+  padding: 6px 0;
+  cursor: pointer;
+  text-align: center;
+  color: #666;
+  background-color: #f5f5f5;
+  &.pogo-picker-highlighted {
+    color: #000;
+    background-color: #96c93d;
+  }
+  &.pogo-picker-selected {
+    color: #fff;
+    background-color: #2985ff;
+  }
+  &.pogo-picker-empty {
+    text-indent: -999999px;
+    background-color: #fff;
     &:hover {
-      background-color: #666;
-      color: #fff;
+      cursor: default;
+      background-color: #fff;
     }
+  }
+  &:hover {
+    color: #fff;
+    background-color: #666;
   }
 }
 
 .pogo-picker-nav-btn {
   position: absolute;
-  top: 0px;
+  top: 0;
   padding: 14px 11px;
   &.pogo-picker-nav-btn-left {
     left: 0;
@@ -86,37 +91,39 @@ body {
   &:hover {
     cursor: pointer;
     .pogo-picker-icon {
-      border-color: rgba(255, 255, 255, 1);
+      border-color: white;
     }
   }
 }
 
 .pogo-picker-icon {
-  border: solid rgba(255, 255, 255, 0.5);
-  border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
+  border: solid rgba(255, 255, 255, 0.5);
+  border-width: 0 3px 3px 0;
   &:hover {
-    border-color: rgba(255, 255, 255, 1);
+    border-color: white;
   }
   &.pogo-picker-arrow-right {
-    transform: scale(0.9, 0.9) rotate(-45deg);
     -webkit-transform: scale(0.9, 0.9) rotate(-45deg);
+    transform: scale(0.9, 0.9) rotate(-45deg);
   }
   &.pogo-picker-arrow-left {
-    transform: scale(0.9, 0.9) rotate(135deg);
     -webkit-transform: scale(0.9, 0.9) rotate(135deg);
+    transform: scale(0.9, 0.9) rotate(135deg);
   }
 }
 
 /***********/
 
-.clear-fix:before,
-.clear-fix:after {
-  content: " ";
-  display: table;
-}
-
-.clear-fix:after {
-  clear: both;
+.clear-fix {
+  &:before {
+    display: table;
+    content: " ";
+  }
+  &:after {
+    display: table;
+    content: " ";
+    clear: both;
+  }
 }
