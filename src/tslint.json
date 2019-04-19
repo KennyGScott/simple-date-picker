@@ -3,17 +3,15 @@
   "rules": {
     "no-trailing-whitespace": false,
     "one-line": false,
+    "no-namespace": false,
+    "variable-name": false,
+    "prefer-for-of": false,
     "directive-selector": [
       true,
       "attribute",
       "app",
       "camelCase"
     ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ]
+    "component-selector": false
   }
 }

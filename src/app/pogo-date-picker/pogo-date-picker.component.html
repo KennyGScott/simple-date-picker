@@ -1,12 +1,31 @@
 <div class="pogo-picker">
+  <pogo-month-selector
+    [monthList]="monthList"
+    (monthSelected)="updateMonth($event)"
+    [currentDate]="getActiveDate()"
+    (close)="closeMonthSelector($event)"
+    *ngIf="showMonthSelector"
+  >
+  </pogo-month-selector>
   <header class="pogo-picker-header">
-    <div (click)="getPrevMonth()" class="pogo-picker-nav-btn pogo-picker-nav-btn-left">
+    <div
+      (click)="getPrevMonth()"
+      class="pogo-picker-nav-btn pogo-picker-nav-btn-left"
+    >
       <i class="pogo-picker-icon pogo-picker-arrow-left"></i>
     </div>
-    <div (click)="getNextMonth()" class="pogo-picker-nav-btn pogo-picker-nav-btn-right">
+    <div
+      (click)="getNextMonth()"
+      class="pogo-picker-nav-btn pogo-picker-nav-btn-right"
+    >
       <i class="pogo-picker-icon pogo-picker-arrow-right"></i>
     </div>
-    <div class="pogo-picker-date">{{ getActiveDate() }}</div>
+    <div class="pogo-picker-date">
+      <span (click)="showMonthSelector = true"
+        >{{ getActiveDate().month }}
+      </span>
+      <span>{{ getActiveDate().year }}</span>
+    </div>
     <div class="pogo-picker-day-names clear-fix">
       <div *ngFor="let dayName of dayNames" class="pogo-picker-day-name">
         {{ dayName }}
@@ -18,10 +37,11 @@
       *ngFor="let date of dates"
       (click)="setDate(date)"
       class="pogo-picker-day-box"
-      [ngClass]="{ 'pogo-picker-empty': date.offset === null,
-                   'pogo-picker-highlighted': date.isImportant,
-                   'pogo-picker-selected': date.fullDate === selectedDate
-                  }"
+      [ngClass]="{
+        'pogo-picker-empty': date.offset === null,
+        'pogo-picker-highlighted': date.isImportant,
+        'pogo-picker-selected': selectedDate === date.fulldate
+      }"
     >
       {{ date.dayOfMonth }}
     </div>

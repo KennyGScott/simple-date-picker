@@ -1,3 +1,10 @@
-<p>
-  pogo-month-selector works!
-</p>
+<div class="pogo-month-selector" [hidden]="showMonthSelector">
+  <div class="pogo-month-selector-close-btn" (click)="onClose()">
+    <i class="fa fa-times"></i>
+  </div>
+  <ul>
+    <li *ngFor="let month of monthTable" (click)="selectMonth(month.name)">
+      {{ month.name }}
+    </li>
+  </ul>
+</div>

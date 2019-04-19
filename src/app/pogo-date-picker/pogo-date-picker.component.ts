@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -8,29 +8,69 @@ import * as moment from 'moment';
 })
 
 export class PogoDatePickerComponent implements OnInit {
-  @Input() importantDates: Array<any>;
+  /**
+   * Property declarations
+   */
   public dates: Array<PogoDatePickerModel.CalendarDate>;
   public dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public monthList: Array<PogoDatePickerModel.MonthListItem>;
   public activeDate;
   public selectedDate;
-  constructor(private renderer: Renderer2) {
+  public showMonthSelector: boolean;
+
+  /**
+   * Input & Output declarations
+   */
+  @Input() importantDates: Array<any>;
+
+  /**
+   * Events
+   */
+
+  /**
+   * Component constructor
+   */
+  constructor() {
     this.dates = new Array<PogoDatePickerModel.CalendarDate>();
     this.activeDate = moment(new Date());
     this.selectedDate = this.activeDate;
   }
 
+  /**
+   * Getters & setters
+   */
+
+  /**
+   * Lifecycle hooks
+   */
   ngOnInit() {
     this.generateCalendar();
     this.generateMonthList();
   }
 
+  /**
+   * Component Methods
+   */
   public setDate(date) {
-    this.selectedDate = moment(date, 'YYYY-MM-DD').toString();
+    this.selectedDate = date.fulldate;
+    console.log(this.selectedDate);
+    console.log(this.selectedDate === date.fulldate);
   }
 
+  public closeMonthSelector(evt) {
+    this.showMonthSelector = false;
+  }
+
+  public updateMonth(evt) {
+    console.log(evt);
+  }
   public getActiveDate(date = this.activeDate) {
-    return moment(date).format('MMMM YYYY');
+    const activeMonth = moment(date).format('MMMM');
+    const activeYear = moment(date).format('YYYY');
+    return {
+      month: activeMonth,
+      year: activeYear
+    };
   }
 
   public getPrevMonth() {
@@ -44,7 +84,6 @@ export class PogoDatePickerComponent implements OnInit {
     this.setActiveDate(nextMonth);
     this.generateCalendar();
   }
-
   private setActiveDate(date) {
     this.activeDate = date;
   }
