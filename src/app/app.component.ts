@@ -5,5 +5,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'sandbox';
+  title = 'Date Picker';
+  public showDatePicker = false;
+  public dateSelected = '';
+
+  setDate(evt) {
+    this.dateSelected = evt
+  }
+
 }
+

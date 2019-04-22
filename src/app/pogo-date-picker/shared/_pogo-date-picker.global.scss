@@ -1,8 +1,8 @@
 @import '../shared/pogo-date-picker.colors';
 
 .pogo-picker {
-  height: 165px;
-
+  position: absolute;
+  height: 167px;
 }
 .pogo-picker-selector {
   * {
@@ -13,17 +13,17 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 248px;
   background-color: $white-smoke;
   z-index: 10;
   border: 1px solid $light-gray;
-  height: 204px;
+  height: 234px;
   ul {
     position: relative;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-51%, -50%);
-            transform: translate(-51%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -68,7 +68,7 @@
       list-style-type: none;
       &:hover {
         cursor:pointer;
-        color: #fff;
+        color: $white;;
         background-color: $devil-gray;
       }
     }
@@ -88,9 +88,9 @@
     }
     &:hover {
       cursor: pointer;
-      background-color: #c00;
+      background-color: $error-red;
       &:before {
-        color: #fff
+        color: $white;
       }
     }
   }
@@ -100,7 +100,7 @@
   position: absolute;
   top: 0;
   padding: 14px 11px;
-  z-index: 10;
+  z-index: 5;
   &.pogo-picker-nav-btn-left {
     left: 0;
   }
@@ -135,7 +135,13 @@
 }
 
 .pogo-picker-action {
-  cursor: pointer
+  cursor: pointer;
+  padding: 3px 5px;
+  line-height: 1;
+  display: inline-block;
+  &:hover {
+    background-color: #555;
+  }
 }
 
 /***********/

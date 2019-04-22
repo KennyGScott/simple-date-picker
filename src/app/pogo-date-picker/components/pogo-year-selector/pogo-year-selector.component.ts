@@ -13,7 +13,6 @@ export class PogoYearSelectorComponent implements OnInit {
   private _year: number;
   private _years: Array<number>;
   public pagedYears: Array<any>;
-  public showYearSelector: boolean;
   public currentPage: number;
   /**
    * Input & Output declarations
@@ -32,7 +31,6 @@ export class PogoYearSelectorComponent implements OnInit {
 
   public onClose(): void {
     this.close.emit(false);
-    this.showYearSelector = false;
   }
 
   /**

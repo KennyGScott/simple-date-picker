@@ -11,7 +11,7 @@
     (close)="closeMonthSelector($event)"
     *ngIf="showMonthSelector">
   </pogo-month-selector>
-  <header class="pogo-picker-header" *ngIf="!showMonthSelector && !showYearSelector">
+  <header class="pogo-picker-header" >
     <div
       (click)="getPrevMonth()"
       class="pogo-picker-nav-btn pogo-picker-nav-btn-left">
@@ -42,7 +42,7 @@
       [ngClass]="{
         'pogo-picker-empty': date.offset === null,
         'pogo-picker-highlighted': date.isImportant,
-        'pogo-picker-selected': selectedDate === date.fullDate
+        'pogo-picker-selected': selectedDate === date.fullDate || initialDate === date.fullDate
       }">
       {{ date.dayOfMonth }}
     </div>

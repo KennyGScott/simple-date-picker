@@ -11,7 +11,6 @@ export class PogoMonthSelectorComponent implements OnInit {
    */
   private _month = '';
   public monthTable: Array<PogoDatePickerModel.MonthListItem>;
-  public showMonthSelector: boolean;
 
   /**
    * Input & Output declarations

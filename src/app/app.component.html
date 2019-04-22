@@ -1,3 +1,6 @@
 <div>
-  <pogo-date-picker [importantDates]="['2019-04-26', '2019-04-17']"></pogo-date-picker>
+  <div>
+    <input type="text" (focus)="showDatePicker = true" [value]="dateSelected" />
+  </div>
+  <pogo-date-picker *ngIf="showDatePicker" [inputDate]="dateSelected" (close)="showDatePicker = false" [importantDates]="['2019-04-26', '2019-04-17']" (dateSelected)="setDate($event)"></pogo-date-picker>
 </div>

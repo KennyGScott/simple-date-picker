@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -18,12 +18,14 @@ export class PogoDatePickerComponent implements OnInit {
   public selectedDate;
   public showMonthSelector: boolean;
   public showYearSelector: boolean;
-
+  public initialDate;
   /**
    * Input & Output declarations
    */
   @Input() importantDates: Array<any>;
-
+  @Input() inputDate: string;
+  @Output() dateSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Output() close: EventEmitter<any> = new EventEmitter<any>();
   /**
    * Events
    */
@@ -33,8 +35,9 @@ export class PogoDatePickerComponent implements OnInit {
    */
   constructor() {
     this.dates = new Array<PogoDatePickerModel.CalendarDate>();
-    this.activeDate = moment(new Date());
+    this.activeDate = moment();
     this.selectedDate = this.activeDate;
+    this.initialDate = this.activeDate.format('YYYY-MM-DD');
   }
 
   /**
@@ -52,13 +55,23 @@ export class PogoDatePickerComponent implements OnInit {
   /**
    * Component Methods
    */
+  public closePicker() {
+    this.close.emit(false);
+  }
   public setDate(date) {
+    if (date.offset === null) {
+      return;
+    }
     this.selectedDate = date.fullDate;
+    this.initialDate = '';
+    this.dateSelected.emit(date.fullDate);
+    this.closePicker();
   }
 
   public closeMonthSelector(evt) {
     this.showMonthSelector = evt;
   }
+
   public closeYearSelector(evt) {
     this.showYearSelector = evt;
   }
@@ -69,7 +82,9 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   public updateYear(evt) {
-    console.log(evt)
+    const year = evt;
+    const month = this.activeDate.month();
+    this.buildActiveDate(year, month + 1, null, null);
   }
 
   public getActiveDate(date = this.activeDate) {
@@ -96,15 +111,18 @@ export class PogoDatePickerComponent implements OnInit {
       this.setActiveDate(fullDate);
       return;
     }
+    if (this.inputDate) {
+      this.setActiveDate(this.inputDate)
+    }
     const currentYear = moment(this.activeDate).year();
     const currentMonth = moment(this.activeDate).month();
     const currentDate = moment(this.activeDate).date();
-    const newYear = (year === null) ? currentYear : year;
-    let newMonth = (month === null) ? currentMonth : month;
-    let newDate = (date === null) ? currentDate : date;
+    const newYear = year === null ? currentYear : year;
+    let newMonth = month === null ? currentMonth : month;
+    let newDate = date === null ? currentDate : date;
 
-    newMonth = (newMonth < 10) ? '0' + newMonth : newMonth;
-    newDate = (newDate < 10) ? '0' + newDate : newDate;
+    newMonth = newMonth < 10 ? '0' + newMonth : newMonth;
+    newDate = newDate < 10 ? '0' + newDate : newDate;
 
     const activeDate = `${newYear}-${newMonth}-${newDate}`;
     this.setActiveDate(activeDate);
@@ -117,18 +135,21 @@ export class PogoDatePickerComponent implements OnInit {
 
   private setOffset() {
     const offset = this.dates[0].offset;
-    if (offset !== null)
-    {
-      for (let i = 0; i < offset; i++)
-      {
-        this.dates.unshift({
-          dayName: '',
-          dayOfMonth: '00',
-          fullDate: '',
-          offset: null,
-          isImportant: false
-        });
+    const blankDay = {
+      dayName: '',
+      dayOfMonth: '00',
+      fullDate: '',
+      offset: null,
+      isImportant: false
+    };
+    if (offset !== null) {
+      for (let i = 0; i < offset; i++) {
+        this.dates.unshift(blankDay);
       }
+    }
+    const endOffset = 40 - this.dates.length;
+    for (let i = 0; i < endOffset; i++) {
+      this.dates.push(blankDay);
     }
   }
 
@@ -151,12 +172,11 @@ export class PogoDatePickerComponent implements OnInit {
     const startOfMonth = moment(currentDate).startOf('month');
     const endOfMonth = moment(currentDate).endOf('month');
     const dates = new Array<PogoDatePickerModel.CalendarDate>();
-    for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++)
-    {
-      const date = (`${month}/${i}/${year}`).toString();
+    for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++) {
+      const date = `${month}/${i}/${year}`.toString();
       const fullDate = moment(date, 'MM/D/YYYY').format('YYYY-MM-DD');
       const day = fullDate.split('-')[2];
-      const important = (this.importantDates !== null) ? this.importantDates.includes(fullDate) : false;
+      const important = this.importantDates !== null ? this.importantDates.includes(fullDate) : false;
       dates.push({
         dayName: this.dayNames[startOfMonth.day()],
         dayOfMonth: day,
