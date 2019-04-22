@@ -53,8 +53,6 @@ export class PogoDatePickerComponent implements OnInit {
    */
   public setDate(date) {
     this.selectedDate = date.fullDate;
-    console.log(this.selectedDate);
-    console.log(this.selectedDate === date.fullDate);
   }
 
   public closeMonthSelector(evt) {
@@ -62,8 +60,15 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   public updateMonth(evt) {
-    console.log(evt);
+    let newMonth = evt;
+    const currentDate = moment(this.activeDate).date();
+    const currentYear = moment(this.activeDate).year();
+    newMonth = (newMonth < 10) ? '0' + newMonth : newMonth;
+    const activeDate = `${currentYear}-${newMonth}-${currentDate}`;
+    this.setActiveDate(activeDate);
+
   }
+
   public getActiveDate(date = this.activeDate) {
     const activeMonth = moment(date).format('MMMM');
     const activeYear = moment(date).format('YYYY');
@@ -76,16 +81,15 @@ export class PogoDatePickerComponent implements OnInit {
   public getPrevMonth() {
     const prevMonth = this.activeDate.subtract(1, 'months');
     this.setActiveDate(prevMonth);
-    this.generateCalendar();
   }
 
   public getNextMonth() {
     const nextMonth = this.activeDate.add(1, 'months');
     this.setActiveDate(nextMonth);
-    this.generateCalendar();
   }
   private setActiveDate(date) {
     this.activeDate = date;
+    this.generateCalendar();
   }
 
   private setOffset() {
@@ -111,7 +115,7 @@ export class PogoDatePickerComponent implements OnInit {
     months.forEach((month, idx) => {
       monthList.push({
         name: month,
-        index: idx
+        index: idx + 1
       });
     });
     this.monthList = monthList;
