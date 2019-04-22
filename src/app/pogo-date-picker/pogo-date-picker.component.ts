@@ -60,13 +60,8 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   public updateMonth(evt) {
-    let newMonth = evt;
-    const currentDate = moment(this.activeDate).date();
-    const currentYear = moment(this.activeDate).year();
-    newMonth = (newMonth < 10) ? '0' + newMonth : newMonth;
-    const activeDate = `${currentYear}-${newMonth}-${currentDate}`;
-    this.setActiveDate(activeDate);
-
+    const month = evt;
+    this.buildActiveDate(null, month, null, null);
   }
 
   public getActiveDate(date = this.activeDate) {
@@ -87,8 +82,28 @@ export class PogoDatePickerComponent implements OnInit {
     const nextMonth = this.activeDate.add(1, 'months');
     this.setActiveDate(nextMonth);
   }
+
+  private buildActiveDate(year = null, month = null, date = null, fullDate = null) {
+    if (fullDate) {
+      this.setActiveDate(fullDate);
+      return;
+    }
+    const currentYear = moment(this.activeDate).year();
+    const currentMonth = moment(this.activeDate).month();
+    const currentDate = moment(this.activeDate).date();
+    const newYear = (year === null) ? currentYear : year;
+    let newMonth = (month === null) ? currentMonth : month;
+    let newDate = (date === null) ? currentDate : date;
+
+    newMonth = (newMonth < 10) ? '0' + newMonth : newMonth;
+    newDate = (newDate < 10) ? '0' + newDate : newDate;
+
+    const activeDate = `${newYear}-${newMonth}-${newDate}`;
+    this.setActiveDate(activeDate);
+  }
+
   private setActiveDate(date) {
-    this.activeDate = date;
+    this.activeDate = moment(date);
     this.generateCalendar();
   }
 
