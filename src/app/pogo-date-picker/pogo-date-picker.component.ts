@@ -64,6 +64,10 @@ export class PogoDatePickerComponent implements OnInit {
     this.buildActiveDate(null, month, null, null);
   }
 
+  public updateYear(evt) {
+    console.log(evt)
+  }
+
   public getActiveDate(date = this.activeDate) {
     const activeMonth = moment(date).format('MMMM');
     const activeYear = moment(date).format('YYYY');

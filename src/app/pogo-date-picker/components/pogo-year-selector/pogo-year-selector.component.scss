@@ -1,0 +1,21 @@
+@import '../../shared/pogo-date-picker.global';
+.pogo-picker-nav-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  &:hover {
+    cursor: pointer;
+    .pogo-picker-icon {
+      border-color: $black;
+    }
+  }
+}
+
+.pogo-picker-icon {
+  display: inline-block;
+  padding: 3px;
+  border: solid rgba(0, 0, 0, 0.5);
+  border-width: 0 3px 3px 0;
+  &:hover {
+    border-color: $black;
+  }
+}

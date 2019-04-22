@@ -1,4 +1,7 @@
 <div class="pogo-picker">
+  <pogo-year-selector
+    (yearSelected)="updateYear($event)"
+  ></pogo-year-selector>
   <pogo-month-selector
     [monthList]="monthList"
     (monthSelected)="updateMonth($event)"

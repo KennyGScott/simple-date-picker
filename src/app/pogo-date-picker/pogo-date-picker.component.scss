@@ -1,3 +1,6 @@
+@import './shared/pogo-date-picker.colors';
+@import './shared/pogo-date-picker.global';
+
 body {
   font-size: 1rem;
 }
@@ -12,16 +15,16 @@ body {
   font-size: 12px;
   float: left;
   width: 250px;
-  background-color: white;
+  background-color: $white;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .pogo-picker-header {
   position: relative;
-  color: #fff;
-  border: 1px solid #222;
-  background: #222;
+  color: $white;
+  border: 1px solid $dark-gray;
+  background: $dark-gray;
 }
 
 .pogo-picker-date {
@@ -40,11 +43,11 @@ body {
   float: left;
   width: calc(100% / 7);
   text-align: center;
-  color: #eee;
+  color: $light-gray;
 }
 
 .pogo-picker-body {
-  border: 1px solid #ddd;
+  border: 1px solid $light-gray;
   border-top: none;
 }
 
@@ -55,81 +58,28 @@ body {
   padding: 6px 0;
   cursor: pointer;
   text-align: center;
-  color: #666;
-  background-color: #f5f5f5;
+  color: $devil-gray;
+  background-color: $white-smoke;
   &.pogo-picker-highlighted {
-    color: #000;
-    background-color: #96c93d;
+    color: $black;
+    background-color: $pogo-green;
   }
   &.pogo-picker-selected {
-    color: #fff;
-    background-color: #2985ff;
+    color: $white;
+    background-color: $pogo-blue;
   }
   &.pogo-picker-empty {
     text-indent: -999999px;
-    background-color: #fff;
+    background-color: $white;
     &:hover {
       cursor: default;
-      background-color: #fff;
+      background-color: $white;
     }
   }
   &:hover {
-    color: #fff;
-    background-color: #666;
+    color: $white;
+    background-color: $devil-gray;
   }
 }
 
-.pogo-picker-nav-btn {
-  position: absolute;
-  top: 0;
-  padding: 14px 11px;
-  &.pogo-picker-nav-btn-left {
-    left: 0;
-  }
-  &.pogo-picker-nav-btn-right {
-    right: 0;
-  }
-  &:hover {
-    cursor: pointer;
-    .pogo-picker-icon {
-      border-color: white;
-    }
-  }
-}
 
-.pogo-picker-icon {
-  display: inline-block;
-  padding: 3px;
-  border: solid rgba(255, 255, 255, 0.5);
-  border-width: 0 3px 3px 0;
-  &:hover {
-    border-color: white;
-  }
-  &.pogo-picker-arrow-right {
-    -webkit-transform: scale(0.9, 0.9) rotate(-45deg);
-    transform: scale(0.9, 0.9) rotate(-45deg);
-  }
-  &.pogo-picker-arrow-left {
-    -webkit-transform: scale(0.9, 0.9) rotate(135deg);
-    transform: scale(0.9, 0.9) rotate(135deg);
-  }
-
-}
-
-.pogo-picker-action {
-  cursor: pointer
-}
-
-/***********/
-
-.clear-fix {
-  &:before {
-    display: table;
-    content: " ";
-  }
-  &:after {
-    display: table;
-    content: " ";
-    clear: both;
-  }
-}
