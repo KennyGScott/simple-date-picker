@@ -26,11 +26,11 @@ export class PogoMonthSelectorComponent implements OnInit {
    */
   public selectMonth(month: any): void {
     this.monthSelected.emit(month.index);
-    this.close.emit('close');
+    this.close.emit(false);
   }
 
   public onClose(): void {
-    this.close.emit('close');
+    this.close.emit(false);
   }
 
   /**

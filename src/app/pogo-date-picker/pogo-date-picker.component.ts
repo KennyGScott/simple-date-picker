@@ -17,6 +17,7 @@ export class PogoDatePickerComponent implements OnInit {
   public activeDate;
   public selectedDate;
   public showMonthSelector: boolean;
+  public showYearSelector: boolean;
 
   /**
    * Input & Output declarations
@@ -56,7 +57,10 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   public closeMonthSelector(evt) {
-    this.showMonthSelector = false;
+    this.showMonthSelector = evt;
+  }
+  public closeYearSelector(evt) {
+    this.showYearSelector = evt;
   }
 
   public updateMonth(evt) {

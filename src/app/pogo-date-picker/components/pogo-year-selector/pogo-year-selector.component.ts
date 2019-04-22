@@ -27,11 +27,12 @@ export class PogoYearSelectorComponent implements OnInit {
    */
   public selectYear(year: number): void {
     this.yearSelected.emit(year);
-    this.close.emit('close');
+    this.close.emit(false);
   }
 
   public onClose(): void {
-    this.close.emit('close');
+    this.close.emit(false);
+    this.showYearSelector = false;
   }
 
   /**

@@ -1,6 +1,8 @@
 <div class="pogo-picker">
   <pogo-year-selector
     (yearSelected)="updateYear($event)"
+    (close)="closeYearSelector($event)"
+    *ngIf="showYearSelector"
   ></pogo-year-selector>
   <pogo-month-selector
     [monthList]="monthList"
@@ -9,7 +11,7 @@
     (close)="closeMonthSelector($event)"
     *ngIf="showMonthSelector">
   </pogo-month-selector>
-  <header class="pogo-picker-header">
+  <header class="pogo-picker-header" *ngIf="!showMonthSelector && !showYearSelector">
     <div
       (click)="getPrevMonth()"
       class="pogo-picker-nav-btn pogo-picker-nav-btn-left">
@@ -24,7 +26,7 @@
       <span (click)="showMonthSelector = true" class="pogo-picker-action">
         {{ getActiveDate().month }}
       </span>
-      <span class="pogo-picker-action">{{ getActiveDate().year }}</span>
+      <span (click)="showYearSelector = true" class="pogo-picker-action">{{ getActiveDate().year }}</span>
     </div>
     <div class="pogo-picker-day-names clear-fix">
       <div *ngFor="let dayName of dayNames" class="pogo-picker-day-name">
