@@ -52,9 +52,9 @@ export class PogoDatePickerComponent implements OnInit {
    * Component Methods
    */
   public setDate(date) {
-    this.selectedDate = date.fulldate;
+    this.selectedDate = date.fullDate;
     console.log(this.selectedDate);
-    console.log(this.selectedDate === date.fulldate);
+    console.log(this.selectedDate === date.fullDate);
   }
 
   public closeMonthSelector(evt) {
@@ -97,7 +97,7 @@ export class PogoDatePickerComponent implements OnInit {
         this.dates.unshift({
           dayName: '',
           dayOfMonth: '00',
-          fulldate: '',
+          fullDate: '',
           offset: null,
           isImportant: false
         });
@@ -133,7 +133,7 @@ export class PogoDatePickerComponent implements OnInit {
       dates.push({
         dayName: this.dayNames[startOfMonth.day()],
         dayOfMonth: day,
-        fulldate: fullDate,
+        fullDate: fullDate,
         offset: moment(fullDate).day(),
         isImportant: important
       });

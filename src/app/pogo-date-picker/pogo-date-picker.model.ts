@@ -2,7 +2,7 @@ namespace PogoDatePickerModel {
   export interface CalendarDate {
     dayName: string;
     dayOfMonth: string;
-    fulldate: string;
+    fullDate: string;
     offset: number;
     isImportant: boolean;
   }
