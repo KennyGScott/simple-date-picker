@@ -50,6 +50,10 @@ export class PogoDatePickerComponent implements OnInit {
   ngOnInit() {
     this.generateCalendar();
     this.generateMonthList();
+
+    if (this.inputDate) {
+      this.buildActiveDate(null, null, null, this.inputDate);
+    }
   }
 
   /**
@@ -148,7 +152,7 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   private setActiveDate(date) {
-    this.activeDate = moment(date);
+    this.activeDate = moment(date, 'YYYY-MM-DD');
     this.generateCalendar();
   }
 
