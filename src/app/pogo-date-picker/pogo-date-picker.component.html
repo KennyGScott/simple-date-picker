@@ -1,5 +1,5 @@
 
-<input type="text" (focus)="visible = !visible" [value]="date" />
+<input type="text" (focus)="visible = !visible" [value]="date | date: 'longDate'" />
 
 <div>
   <div class="pogo-picker" *ngIf="visible">
