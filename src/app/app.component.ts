@@ -7,10 +7,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Date Picker';
   public showDatePicker = false;
-  public dateSelected = '';
+  public dateSelected: string;
+
+  constructor(){
+    this.dateSelected = '2019-04-23';
+
+  }
 
   setDate(evt) {
     this.dateSelected = evt
+
   }
 
 }

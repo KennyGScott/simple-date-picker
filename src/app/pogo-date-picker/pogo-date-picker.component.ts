@@ -1,13 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
   selector: 'pogo-date-picker',
   templateUrl: './pogo-date-picker.component.html',
-  styleUrls: ['./pogo-date-picker.component.scss']
+  styleUrls: ['./pogo-date-picker.component.scss'],
+  host: {
+    '(document:click)': 'onClick($event)',
+  },
 })
 
-export class PogoDatePickerComponent implements OnInit {
+export class PogoDatePickerComponent implements OnChanges {
   /**
    * Property declarations
    */
@@ -19,13 +22,14 @@ export class PogoDatePickerComponent implements OnInit {
   public showMonthSelector: boolean;
   public showYearSelector: boolean;
   public initialDate;
+  public visible: boolean;
   /**
    * Input & Output declarations
    */
   @Input() importantDates: Array<any>;
-  @Input() inputDate: string;
-  @Output() dateSelected: EventEmitter<any> = new EventEmitter<any>();
-  @Output() close: EventEmitter<any> = new EventEmitter<any>();
+  @Input() date: string;
+  @Output() dateChange = new EventEmitter<string>();
+
   /**
    * Events
    */
@@ -33,11 +37,12 @@ export class PogoDatePickerComponent implements OnInit {
   /**
    * Component constructor
    */
-  constructor() {
+  constructor(private elmRef: ElementRef) {
     this.dates = new Array<PogoDatePickerModel.CalendarDate>();
     this.activeDate = moment();
     this.selectedDate = this.activeDate;
     this.initialDate = this.activeDate.format('YYYY-MM-DD');
+    this.visible = false;
   }
 
   /**
@@ -47,24 +52,31 @@ export class PogoDatePickerComponent implements OnInit {
   /**
    * Lifecycle hooks
    */
-  ngOnInit() {
+  ngOnChanges() {
     this.generateCalendar();
     this.generateMonthList();
 
-    if (this.inputDate) {
-      this.buildActiveDate(null, null, null, this.inputDate);
+    if (this.date) {
+      this.buildActiveDate(null, null, null, this.date);
     }
   }
 
+  onClick(event) {
+    console.log("onCLick")
+    console.log(this.elmRef)
+    console.log(this.elmRef.nativeElement)
+    if (!this.elmRef.nativeElement.contains(event.target))
+      console.log("outside")
+  }
   /**
    * Component Methods
    */
   public setSelected(date) {
     let selected = false;
-    if (this.inputDate && this.inputDate === date)
+    if (this.date && this.date === date)
     {
       selected = true;
-    } else if (!this.inputDate && this.initialDate === date)
+    } else if (!this.date && this.initialDate === date)
     {
       selected = true;
     } else
@@ -75,7 +87,7 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   public closePicker() {
-    this.close.emit(false);
+    this.visible = false;
   }
 
   public setDate(date) {
@@ -85,7 +97,7 @@ export class PogoDatePickerComponent implements OnInit {
     }
     this.selectedDate = date.fullDate;
     this.initialDate = '';
-    this.dateSelected.emit(date.fullDate);
+    this.dateChange.emit(date.fullDate);
     this.closePicker();
   }
 
@@ -133,9 +145,9 @@ export class PogoDatePickerComponent implements OnInit {
       this.setActiveDate(fullDate);
       return;
     }
-    if (this.inputDate)
+    if (this.date)
     {
-      this.setActiveDate(this.inputDate)
+      this.setActiveDate(this.date)
     }
     const currentYear = moment(this.activeDate).year();
     const currentMonth = moment(this.activeDate).month();
