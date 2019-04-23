@@ -42,7 +42,7 @@
       [ngClass]="{
         'pogo-picker-empty': date.offset === null,
         'pogo-picker-highlighted': date.isImportant,
-        'pogo-picker-selected': selectedDate === date.fullDate || initialDate === date.fullDate
+        'pogo-picker-selected': setSelected(date.fullDate)
       }">
       {{ date.dayOfMonth }}
     </div>

@@ -64,17 +64,18 @@ export class PogoYearSelectorComponent implements OnInit {
     const minYear = 100;
     const maxYear = 10000;
     const years = [];
-    for (let i = maxYear; i > minYear - 1; i--) {
+    for (let i = maxYear; i > minYear - 1; i--)
+    {
       years.unshift(i);
     }
     this.years = years;
     this.buildPagedYears();
   }
-  getPrevPage(){
+  getPrevPage() {
     this.currentPage -= 1;
     this.setPagedYears();
   }
-  getNextPage(){
+  getNextPage() {
     this.currentPage += 1;
     this.setPagedYears();
   }
@@ -83,8 +84,9 @@ export class PogoYearSelectorComponent implements OnInit {
     const pagedYears = this.pagedYears;
     let currentPage = this.currentPage;
     pagedYears.forEach((years, page) => {
-      years.forEach((year)=>{
-        if (year === 2019) {
+      years.forEach((year) => {
+        if (year === 2019)
+        {
           currentPage = page;
         }
       })
@@ -94,11 +96,12 @@ export class PogoYearSelectorComponent implements OnInit {
 
   buildPagedYears(page = 1) {
     const years = this.years;
-    const yearsPerPage = 24-9;
+    const yearsPerPage = 24 - 9;
     const numPages = years.length / yearsPerPage;
     const pages = [];
     page--;
-    for (let i = 0; i < numPages; i++) {
+    for (let i = 0; i < numPages; i++)
+    {
       pages.push(years.slice(i * yearsPerPage, (i + 1) * yearsPerPage));
     }
     this.pagedYears = pages;

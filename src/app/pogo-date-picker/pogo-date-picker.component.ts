@@ -55,11 +55,28 @@ export class PogoDatePickerComponent implements OnInit {
   /**
    * Component Methods
    */
+  public setSelected(date) {
+    let selected = false;
+    if (this.inputDate && this.inputDate === date)
+    {
+      selected = true;
+    } else if (!this.inputDate && this.initialDate === date)
+    {
+      selected = true;
+    } else
+    {
+      selected = false;
+    }
+    return selected;
+  }
+
   public closePicker() {
     this.close.emit(false);
   }
+
   public setDate(date) {
-    if (date.offset === null) {
+    if (date.offset === null)
+    {
       return;
     }
     this.selectedDate = date.fullDate;
@@ -107,11 +124,13 @@ export class PogoDatePickerComponent implements OnInit {
   }
 
   private buildActiveDate(year = null, month = null, date = null, fullDate = null) {
-    if (fullDate) {
+    if (fullDate)
+    {
       this.setActiveDate(fullDate);
       return;
     }
-    if (this.inputDate) {
+    if (this.inputDate)
+    {
       this.setActiveDate(this.inputDate)
     }
     const currentYear = moment(this.activeDate).year();
@@ -142,13 +161,16 @@ export class PogoDatePickerComponent implements OnInit {
       offset: null,
       isImportant: false
     };
-    if (offset !== null) {
-      for (let i = 0; i < offset; i++) {
+    if (offset !== null)
+    {
+      for (let i = 0; i < offset; i++)
+      {
         this.dates.unshift(blankDay);
       }
     }
     const endOffset = 40 - this.dates.length;
-    for (let i = 0; i < endOffset; i++) {
+    for (let i = 0; i < endOffset; i++)
+    {
       this.dates.push(blankDay);
     }
   }
@@ -172,7 +194,8 @@ export class PogoDatePickerComponent implements OnInit {
     const startOfMonth = moment(currentDate).startOf('month');
     const endOfMonth = moment(currentDate).endOf('month');
     const dates = new Array<PogoDatePickerModel.CalendarDate>();
-    for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++) {
+    for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++)
+    {
       const date = `${month}/${i}/${year}`.toString();
       const fullDate = moment(date, 'MM/D/YYYY').format('YYYY-MM-DD');
       const day = fullDate.split('-')[2];
