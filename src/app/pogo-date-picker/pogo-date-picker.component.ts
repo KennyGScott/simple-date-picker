@@ -23,6 +23,7 @@ export class PogoDatePickerComponent implements OnChanges {
   public showYearSelector: boolean;
   public initialDate;
   public visible: boolean;
+  private clickedOutside = true;
   /**
    * Input & Output declarations
    */
@@ -33,7 +34,10 @@ export class PogoDatePickerComponent implements OnChanges {
   /**
    * Events
    */
-
+  @HostListener('click', ['$event'])
+  clickInside(event: any) {
+    this.clickedOutside = false;
+  }
   /**
    * Component constructor
    */
@@ -62,11 +66,11 @@ export class PogoDatePickerComponent implements OnChanges {
   }
 
   onClick(event) {
-    console.log("onCLick")
-    console.log(this.elmRef)
-    console.log(this.elmRef.nativeElement)
-    if (!this.elmRef.nativeElement.contains(event.target))
-      console.log("outside")
+    if (this.showMonthSelector || this.showYearSelector) { return false; }
+    if (!this.elmRef.nativeElement.contains(event.target)  && this.clickedOutside) {
+      this.closePicker();
+    }
+    this.clickedOutside = true;
   }
   /**
    * Component Methods
@@ -147,7 +151,7 @@ export class PogoDatePickerComponent implements OnChanges {
     }
     if (this.date)
     {
-      this.setActiveDate(this.date)
+      this.setActiveDate(this.date);
     }
     const currentYear = moment(this.activeDate).year();
     const currentMonth = moment(this.activeDate).month();
