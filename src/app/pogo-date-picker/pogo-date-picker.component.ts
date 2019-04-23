@@ -23,7 +23,7 @@ export class PogoDatePickerComponent implements OnChanges {
   public showYearSelector: boolean;
   public initialDate;
   public visible: boolean;
-  private clickedOutside = true;
+  private closeEnabled = true;
   /**
    * Input & Output declarations
    */
@@ -36,7 +36,7 @@ export class PogoDatePickerComponent implements OnChanges {
    */
   @HostListener('click', ['$event'])
   clickInside(event: any) {
-    this.clickedOutside = false;
+    this.closeEnabled = false;
   }
   /**
    * Component constructor
@@ -67,10 +67,10 @@ export class PogoDatePickerComponent implements OnChanges {
 
   onClick(event) {
     if (this.showMonthSelector || this.showYearSelector) { return false; }
-    if (!this.elmRef.nativeElement.contains(event.target)  && this.clickedOutside) {
+    if (!this.elmRef.nativeElement.contains(event.target)  && this.closeEnabled) {
       this.closePicker();
     }
-    this.clickedOutside = true;
+    this.closeEnabled = true;
   }
   /**
    * Component Methods
