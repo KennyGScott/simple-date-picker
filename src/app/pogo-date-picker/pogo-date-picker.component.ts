@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 import * as PogoModels from './pogo-date-picker.model';
+
 @Component({
   selector: 'pogo-date-picker',
   templateUrl: './pogo-date-picker.component.html',
