@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
