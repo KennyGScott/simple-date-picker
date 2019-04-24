@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
 import * as SimplePickerModels from './simple-date-picker.model';
-
+const moment = moment_; // fixes package build error
 @Component({
   selector: 'simple-date-picker',
   templateUrl: './simple-date-picker.component.html',
