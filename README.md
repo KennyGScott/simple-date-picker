@@ -9,7 +9,7 @@ A simple calendar based datepicker component for Angular, very loosely based on 
 
 ### Inputs:
 ```js
-  importantDates: Array // An array of dates in YYYY-MM-DD format to be highlighted on the calendar
+importantDates: Array // An array of dates in YYYY-MM-DD format to be highlighted on the calendar
 ```
 
 ### Contribute
