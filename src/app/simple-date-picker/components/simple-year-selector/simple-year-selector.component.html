@@ -1,0 +1,20 @@
+<div class="simple-year-selector simple-picker-selector">
+    <div class="simple-year-selector-close-btn" (click)="onClose()">
+      <i class="fa fa-times"></i>
+    </div>
+    <div
+      (click)="getPrevPage()"
+      class="simple-picker-nav-btn simple-picker-nav-btn-left">
+      <i class="simple-picker-icon simple-picker-arrow-left"></i>
+    </div>
+    <div
+      (click)="getNextPage()"
+      class="simple-picker-nav-btn simple-picker-nav-btn-right">
+      <i class="simple-picker-icon simple-picker-arrow-right"></i>
+    </div>
+    <ul>
+      <li *ngFor="let year of years" (click)="selectYear(year)">
+        {{ year }}
+      </li>
+    </ul>
+  </div>

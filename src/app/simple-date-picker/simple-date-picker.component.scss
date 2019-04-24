@@ -1,11 +1,11 @@
-@import './shared/pogo-date-picker.colors';
-@import './shared/pogo-date-picker.global';
+@import './shared/simple-date-picker.colors';
+@import './shared/simple-date-picker.global';
 
 body {
   font-size: 1rem;
 }
 
-.pogo-picker {
+.simple-picker {
   * {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -21,14 +21,14 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.pogo-picker-header {
+.simple-picker-header {
   position: relative;
   color: $white;
   border: 1px solid $dark-gray;
   background: $dark-gray;
 }
 
-.pogo-picker-date {
+.simple-picker-date {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
@@ -36,23 +36,23 @@ body {
   text-align: center;
 }
 
-.pogo-picker-day-names {
+.simple-picker-day-names {
   padding: 5px 0 10px;
 }
 
-.pogo-picker-day-name {
+.simple-picker-day-name {
   float: left;
   width: calc(100% / 7);
   text-align: center;
   color: $light-gray;
 }
 
-.pogo-picker-body {
+.simple-picker-body {
   border: 1px solid $light-gray;
   border-top: none;
 }
 
-.pogo-picker-day-box {
+.simple-picker-day-box {
   font-family: "Source Sans Pro", sans-serif;
   float: left;
   width: calc(100% / 7);
@@ -61,15 +61,15 @@ body {
   text-align: center;
   color: $devil-gray;
   background-color: $white-smoke;
-  &.pogo-picker-highlighted {
+  &.simple-picker-highlighted {
     color: $black;
-    background-color: $pogo-green;
+    background-color: $simple-green;
   }
-  &.pogo-picker-selected {
+  &.simple-picker-selected {
     color: $white;
-    background-color: $pogo-blue;
+    background-color: $simple-blue;
   }
-  &.pogo-picker-empty {
+  &.simple-picker-empty {
     text-indent: -999999px;
     background-color: $white;
     &:hover {

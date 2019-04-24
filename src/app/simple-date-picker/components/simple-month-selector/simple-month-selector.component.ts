@@ -1,22 +1,22 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import * as PogoModels from '../../pogo-date-picker.model';
+import * as SimplePickerModels from '../../simple-date-picker.model';
 
 @Component({
-  selector: 'pogo-month-selector',
-  templateUrl: './pogo-month-selector.component.html',
-  styleUrls: ['./pogo-month-selector.component.scss']
+  selector: 'simple-month-selector',
+  templateUrl: './simple-month-selector.component.html',
+  styleUrls: ['./simple-month-selector.component.scss']
 })
-export class PogoMonthSelectorComponent implements OnInit {
+export class SimpleMonthSelectorComponent implements OnInit {
   /**
    * Property declarations
    */
   private _month = '';
-  public monthTable: Array<PogoModels.MonthListItem>;
+  public monthTable: Array<SimplePickerModels.MonthListItem>;
 
   /**
    * Input & Output declarations
    */
-  @Input() monthList: Array<PogoModels.MonthListItem> = [];
+  @Input() monthList: Array<SimplePickerModels.MonthListItem> = [];
   @Input() currentDate;
   @Output() monthSelected: EventEmitter<any> = new EventEmitter<any>();
   @Output() close: EventEmitter<any> = new EventEmitter<any>();

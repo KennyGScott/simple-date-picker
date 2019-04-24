@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { PogoDatePickerModule } from './pogo-date-picker/pogo-date-picker.module';
+import { SimpleDatePickerModule } from './simple-date-picker/simple-date-picker.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +12,7 @@ import { PogoDatePickerModule } from './pogo-date-picker/pogo-date-picker.module
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PogoDatePickerModule
+    SimpleDatePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

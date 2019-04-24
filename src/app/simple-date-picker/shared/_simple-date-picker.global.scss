@@ -1,10 +1,10 @@
-@import '../shared/pogo-date-picker.colors';
+@import '../shared/simple-date-picker.colors';
 
-.pogo-picker {
+.simple-picker {
   position: absolute;
   height: 167px;
 }
-.pogo-picker-selector {
+.simple-picker-selector {
   * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -96,26 +96,26 @@
   }
 }
 
-.pogo-picker-nav-btn {
+.simple-picker-nav-btn {
   position: absolute;
   top: 0;
   padding: 14px 11px;
   z-index: 5;
-  &.pogo-picker-nav-btn-left {
+  &.simple-picker-nav-btn-left {
     left: 0;
   }
-  &.pogo-picker-nav-btn-right {
+  &.simple-picker-nav-btn-right {
     right: 0;
   }
   &:hover {
     cursor: pointer;
-    .pogo-picker-icon {
+    .simple-picker-icon {
       border-color: $white;
     }
   }
 }
 
-.pogo-picker-icon {
+.simple-picker-icon {
   display: inline-block;
   padding: 3px;
   border: solid rgba(255, 255, 255, 0.5);
@@ -123,18 +123,18 @@
   &:hover {
     border-color: $white;
   }
-  &.pogo-picker-arrow-right {
+  &.simple-picker-arrow-right {
     -webkit-transform: scale(0.9, 0.9) rotate(-45deg);
     transform: scale(0.9, 0.9) rotate(-45deg);
   }
-  &.pogo-picker-arrow-left {
+  &.simple-picker-arrow-left {
     -webkit-transform: scale(0.9, 0.9) rotate(135deg);
     transform: scale(0.9, 0.9) rotate(135deg);
   }
 
 }
 
-.pogo-picker-action {
+.simple-picker-action {
   cursor: pointer;
   padding: 3px 5px;
   line-height: 1;

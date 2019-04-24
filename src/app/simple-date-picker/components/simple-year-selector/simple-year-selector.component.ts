@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'pogo-year-selector',
-  templateUrl: './pogo-year-selector.component.html',
-  styleUrls: ['./pogo-year-selector.component.scss']
+  selector: 'simple-year-selector',
+  templateUrl: './simple-year-selector.component.html',
+  styleUrls: ['./simple-year-selector.component.scss']
 })
-export class PogoYearSelectorComponent implements OnInit {
+export class SimpleYearSelectorComponent implements OnInit {
 
   /**
    * Property declarations

@@ -1,16 +1,16 @@
-@import '../../shared/pogo-date-picker.global';
-.pogo-picker-nav-btn {
+@import '../../shared/simple-date-picker.global';
+.simple-picker-nav-btn {
   top: 50%;
   transform: translateY(-50%);
   &:hover {
     cursor: pointer;
-    .pogo-picker-icon {
+    .simple-picker-icon {
       border-color: $black;
     }
   }
 }
 
-.pogo-picker-icon {
+.simple-picker-icon {
   display: inline-block;
   padding: 3px;
   border: solid rgba(0, 0, 0, 0.5);
