@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
 import * as moment from 'moment';
-
+import * as PogoModels from './pogo-date-picker.model';
 @Component({
   selector: 'pogo-date-picker',
   templateUrl: './pogo-date-picker.component.html',
@@ -14,9 +14,9 @@ export class PogoDatePickerComponent implements OnChanges {
   /**
    * Property declarations
    */
-  public dates: Array<PogoDatePickerModel.CalendarDate>;
+  public dates: Array<PogoModels.CalendarDate>;
   public dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  public monthList: Array<PogoDatePickerModel.MonthListItem>;
+  public monthList: Array<PogoModels.MonthListItem>;
   public activeDate;
   public selectedDate;
   public showMonthSelector: boolean;
@@ -42,7 +42,7 @@ export class PogoDatePickerComponent implements OnChanges {
    * Component constructor
    */
   constructor(private elmRef: ElementRef) {
-    this.dates = new Array<PogoDatePickerModel.CalendarDate>();
+    this.dates = new Array<PogoModels.CalendarDate>();
     this.activeDate = moment();
     this.selectedDate = this.activeDate;
     this.initialDate = this.activeDate.format('YYYY-MM-DD');
@@ -196,7 +196,7 @@ export class PogoDatePickerComponent implements OnChanges {
   }
 
   private generateMonthList() {
-    const monthList = new Array<PogoDatePickerModel.MonthListItem>();
+    const monthList = new Array<PogoModels.MonthListItem>();
     const months = moment.monthsShort();
     months.forEach((month, idx) => {
       monthList.push({
@@ -213,7 +213,7 @@ export class PogoDatePickerComponent implements OnChanges {
     const year = currentDate.year();
     const startOfMonth = moment(currentDate).startOf('month');
     const endOfMonth = moment(currentDate).endOf('month');
-    const dates = new Array<PogoDatePickerModel.CalendarDate>();
+    const dates = new Array<PogoModels.CalendarDate>();
     for (let i = startOfMonth.date(); i <= endOfMonth.date(); i++)
     {
       const date = `${month}/${i}/${year}`.toString();

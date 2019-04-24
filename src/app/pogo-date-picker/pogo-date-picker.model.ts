@@ -1,4 +1,3 @@
-namespace PogoDatePickerModel {
   export interface CalendarDate {
     dayName: string;
     dayOfMonth: string;
@@ -10,4 +9,4 @@ namespace PogoDatePickerModel {
     name: string;
     index: number;
   }
-}
+

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import * as PogoModels from '../../pogo-date-picker.model';
 
 @Component({
   selector: 'pogo-month-selector',
@@ -10,12 +11,12 @@ export class PogoMonthSelectorComponent implements OnInit {
    * Property declarations
    */
   private _month = '';
-  public monthTable: Array<PogoDatePickerModel.MonthListItem>;
+  public monthTable: Array<PogoModels.MonthListItem>;
 
   /**
    * Input & Output declarations
    */
-  @Input() monthList: Array<PogoDatePickerModel.MonthListItem> = [];
+  @Input() monthList: Array<PogoModels.MonthListItem> = [];
   @Input() currentDate;
   @Output() monthSelected: EventEmitter<any> = new EventEmitter<any>();
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
