@@ -1,6 +1,6 @@
 {
-  "name": "sandbox",
-  "version": "0.0.0",
+  "name": "simple-date-picker",
+  "version": "0.0.w",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

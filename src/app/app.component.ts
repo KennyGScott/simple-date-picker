@@ -10,13 +10,10 @@ export class AppComponent {
   public dateSelected: string;
 
   constructor(){
-    this.dateSelected = '2019-04-23';
-
   }
 
   setDate(evt) {
     this.dateSelected = evt
-
   }
 
 }

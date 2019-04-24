@@ -48,6 +48,8 @@ export class SimpleDatePickerComponent implements OnChanges {
     this.selectedDate = this.activeDate;
     this.initialDate = this.activeDate.format('YYYY-MM-DD');
     this.visible = false;
+    this.date = this.date ? this.date : this.initialDate;
+    this.importantDates = this.importantDates.length ? this.importantDates : [];
   }
 
   /**
