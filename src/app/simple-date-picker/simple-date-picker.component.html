@@ -3,7 +3,7 @@
     class="{{ inputClass }} simple-picker-input"
     (click)="visible = !visible"
   >
-    {{ date | date: "longDate" }}
+    {{ date | date }}
   </button>
   <div>
     <div class="simple-picker" *ngIf="visible">
