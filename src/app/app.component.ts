@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import * as moment_ from 'moment'
+const moment = moment_;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +12,7 @@ export class AppComponent {
   public dateSelected: string;
 
   constructor(){
+    this.dateSelected = moment().format('YYYY-MM-DD')
   }
 
   setDate(evt) {

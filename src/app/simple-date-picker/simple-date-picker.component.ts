@@ -30,6 +30,7 @@ export class SimpleDatePickerComponent implements OnChanges {
    */
   @Input() importantDates: Array<any>;
   @Input() date: string;
+  @Input() inputClass: string;
   @Output() dateChange = new EventEmitter<string>();
 
   /**
@@ -48,8 +49,9 @@ export class SimpleDatePickerComponent implements OnChanges {
     this.selectedDate = this.activeDate;
     this.initialDate = this.activeDate.format('YYYY-MM-DD');
     this.visible = false;
-    this.date = this.date ? this.date : this.initialDate;
-    this.importantDates = this.importantDates.length ? this.importantDates : [];
+    this.date = '';
+    this.importantDates = [];
+    this.inputClass = '';
   }
 
   /**

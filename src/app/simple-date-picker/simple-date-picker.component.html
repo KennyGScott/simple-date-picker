@@ -1,55 +1,71 @@
-
-<input type="text" (focus)="visible = !visible" [value]="date | date: 'longDate'" />
-<div>
-  <div class="simple-picker" *ngIf="visible">
-    <simple-year-selector
-      (yearSelected)="updateYear($event)"
-      (close)="closeYearSelector($event)"
-      *ngIf="showYearSelector"
-    ></simple-year-selector>
-    <simple-month-selector
-      [monthList]="monthList"
-      (monthSelected)="updateMonth($event)"
-      [currentDate]="getActiveDate()"
-      (close)="closeMonthSelector($event)"
-      *ngIf="showMonthSelector">
-    </simple-month-selector>
-    <header class="simple-picker-header" >
-      <div
-        (click)="getPrevMonth()"
-        class="simple-picker-nav-btn simple-picker-nav-btn-left">
-        <i class="simple-picker-icon simple-picker-arrow-left"></i>
-      </div>
-      <div
-        (click)="getNextMonth()"
-        class="simple-picker-nav-btn simple-picker-nav-btn-right">
-        <i class="simple-picker-icon simple-picker-arrow-right"></i>
-      </div>
-      <div class="simple-picker-date">
-        <span (click)="showMonthSelector = true" class="simple-picker-action">
-          {{ getActiveDate().month }}
-        </span>
-        <span (click)="showYearSelector = true" class="simple-picker-action">{{ getActiveDate().year }}</span>
-      </div>
-      <div class="simple-picker-day-names clear-fix">
-        <div *ngFor="let dayName of dayNames" class="simple-picker-day-name">
-          {{ dayName }}
+<div *ngIf="date">
+  <button
+    class="{{ inputClass }} simple-picker-input"
+    (click)="visible = !visible"
+  >
+    {{ date | date: "longDate" }}
+  </button>
+  <div>
+    <div class="simple-picker" *ngIf="visible">
+      <simple-year-selector
+        (yearSelected)="updateYear($event)"
+        (close)="closeYearSelector($event)"
+        *ngIf="showYearSelector"
+      ></simple-year-selector>
+      <simple-month-selector
+        [monthList]="monthList"
+        (monthSelected)="updateMonth($event)"
+        [currentDate]="getActiveDate()"
+        (close)="closeMonthSelector($event)"
+        *ngIf="showMonthSelector"
+      >
+      </simple-month-selector>
+      <header class="simple-picker-header">
+        <div
+          (click)="getPrevMonth()"
+          class="simple-picker-nav-btn simple-picker-nav-btn-left"
+        >
+          <i class="simple-picker-icon simple-picker-arrow-left"></i>
         </div>
-      </div>
-    </header>
-    <div class="simple-picker-body clear-fix">
-      <div
-        *ngFor="let date of dates"
-        (click)="setDate(date)"
-        class="simple-picker-day-box"
-        [ngClass]="{
-          'simple-picker-empty': date.offset === null,
-          'simple-picker-highlighted': date.isImportant,
-          'simple-picker-selected': setSelected(date.fullDate)
-        }">
-        {{ date.dayOfMonth }}
+        <div
+          (click)="getNextMonth()"
+          class="simple-picker-nav-btn simple-picker-nav-btn-right"
+        >
+          <i class="simple-picker-icon simple-picker-arrow-right"></i>
+        </div>
+        <div class="simple-picker-date">
+          <span (click)="showMonthSelector = true" class="simple-picker-action">
+            {{ getActiveDate().month }}
+          </span>
+          <span
+            (click)="showYearSelector = true"
+            class="simple-picker-action"
+            >{{ getActiveDate().year }}</span
+          >
+        </div>
+        <div class="simple-picker-day-names clear-fix">
+          <div *ngFor="let dayName of dayNames" class="simple-picker-day-name">
+            {{ dayName }}
+          </div>
+        </div>
+      </header>
+      <div class="simple-picker-body clear-fix">
+        <div
+          *ngFor="let date of dates"
+          (click)="setDate(date)"
+          class="simple-picker-day-box"
+          [ngClass]="{
+            'simple-picker-empty': date.offset === null,
+            'simple-picker-highlighted': date.isImportant,
+            'simple-picker-selected': setSelected(date.fullDate)
+          }"
+        >
+          {{ date.dayOfMonth }}
+        </div>
       </div>
     </div>
   </div>
-
+</div>
+<div *ngIf="date == undefined">
+  <p>Error: `date` is required, value cannot be null or undefined.</p>
 </div>
