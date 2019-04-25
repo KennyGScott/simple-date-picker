@@ -1,7 +1,5 @@
 <div class="simple-month-selector simple-picker-selector">
-  <div class="simple-month-selector-close-btn" (click)="onClose()">
-    <i class="fa fa-times"></i>
-  </div>
+  <div class="simple-month-selector-close-btn" (click)="onClose()"></div>
   <ul>
     <li *ngFor="let month of monthTable" (click)="selectMonth(month)">
       {{ month.name }}
