@@ -1,6 +1,8 @@
-import { Component, Output, EventEmitter, Input, OnChanges, HostListener, ElementRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output } from '@angular/core';
 import * as moment_ from 'moment';
+
 import * as SimplePickerModels from './simple-date-picker.model';
+
 const moment = moment_; // fixes package build error
 @Component({
   selector: 'simple-date-picker',
@@ -168,8 +170,13 @@ export class SimpleDatePickerComponent implements OnChanges {
     newMonth = newMonth < 10 ? '0' + newMonth : newMonth;
     newDate = newDate < 10 ? '0' + newDate : newDate;
 
+    const daysInMonth = moment(`${currentYear}-${newMonth}`, 'YYYY-MM').daysInMonth();
+
+    if (newDate > daysInMonth ) newDate = daysInMonth;
+
     const activeDate = `${newYear}-${newMonth}-${newDate}`;
     this.setActiveDate(activeDate);
+    this.dateChange.emit(activeDate);
   }
 
   private setActiveDate(date) {
