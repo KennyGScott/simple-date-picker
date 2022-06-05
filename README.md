@@ -2,6 +2,8 @@
 
 A simple calendar based datepicker component for Angular, very loosely based on https://github.com/kuvelas/mk-date-range-picker.
 
+## NOTE: This is no longer maintained and contains vulnerabilities. 
+
 ### Basic usage:
 ```ts
 import { SimpleDatePickerModule } from 'angular-simple-date-picker';
