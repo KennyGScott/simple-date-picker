@@ -2,7 +2,7 @@
 
 A simple calendar based datepicker component for Angular
 
-## NOTE: This is no longer maintained and contains vulnerabilities. 
+## NOTE: This is no longer maintained and may contain vulnerabilities. 
 
 ### Basic usage:
 ```ts
